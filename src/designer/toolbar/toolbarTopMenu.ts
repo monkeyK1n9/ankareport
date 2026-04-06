@@ -14,17 +14,17 @@ export default class ToolbarTopMenu extends Toolbar {
     this.saveButton = this.addButton({
       icon: Save,
       text: "",
-      title: translations["Save"],
+      title: translations.save,
       type: "button",
     });
     this.undoButton = this.addButton({
       text: "↩",
-      title: translations["Undo"],
+      title: translations.undo,
       type: "button",
     });
     this.redoButton = this.addButton({
       text: "↪",
-      title: translations["Redo"],
+      title: translations.redo,
       type: "button",
     });
   }

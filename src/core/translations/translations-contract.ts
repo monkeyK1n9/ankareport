@@ -1,82 +1,82 @@
 export interface ITranslations {
     // BaseReportItemProperties
-    "Name": string;
-    "X": string;
-    "Y": string;
-    "Width": string;
-    "Height": string;
+    name: string;
+    x: string;
+    y: string;
+    width: string;
+    height: string;
 
     // StyleProperties
-    "Color": string;
-    "Background Color": string;
-    "Text Align": string;
-    "Border Width": string;
-    "Border Style": string;
-    "Border Color": string;
-    "Font Family": string;
-    "Font Size": string;
-    "Font Weight": string;
+    color: string;
+    backgroundColor: string;
+    textAlign: string;
+    borderWidth: string;
+    borderStyle: string;
+    borderColor: string;
+    fontFamily: string;
+    fontSize: string;
+    fontWeight: string;
 
     // TextReportItemProperties
-    "Text": string;
-    "Binding": string;
-    "Format": string;
+    text: string;
+    binding: string;
+    format: string;
 
     // ImageReportItemProperties
-    "Source": string;
+    source: string;
 
     // BarcodeReportItemProperties
-    "Value": string;
-    "Bar Width": string;
+    value: string;
+    barWidth: string;
 
     // Toolbar buttons
-    "Save": string;
-    "Undo": string;
-    "Redo": string;
-    "Image": string;
-    "Barcode": string;
+    save: string;
+    undo: string;
+    redo: string;
+    image: string;
+    barcode: string;
 
     // Elements tree section labels
-    "Header": string;
-    "Content": string;
-    "Footer": string;
+    header: string;
+    content: string;
+    footer: string;
 
     // Sidebar panel/tab titles
-    "Data Source": string;
-    "Elements": string;
-    "Properties": string;
+    dataSource: string;
+    elements: string;
+    properties: string;
 }
 
 export const defaultTranslations: ITranslations = {
-    "Name": "Name",
-    "X": "X",
-    "Y": "Y",
-    "Width": "Width",
-    "Height": "Height",
-    "Color": "Color",
-    "Background Color": "Background Color",
-    "Text Align": "Text Align",
-    "Border Width": "Border Width",
-    "Border Style": "Border Style",
-    "Border Color": "Border Color",
-    "Font Family": "Font Family",
-    "Font Size": "Font Size",
-    "Font Weight": "Font Weight",
-    "Text": "Text",
-    "Binding": "Binding",
-    "Format": "Format",
-    "Source": "Source",
-    "Value": "Value",
-    "Bar Width": "Bar Width",
-    "Save": "Save",
-    "Undo": "Undo",
-    "Redo": "Redo",
-    "Image": "Image",
-    "Barcode": "Barcode",
-    "Header": "Header",
-    "Content": "Content",
-    "Footer": "Footer",
-    "Data Source": "Data Source",
-    "Elements": "Elements",
-    "Properties": "Properties",
+    name: "Name",
+    x: "X",
+    y: "Y",
+    width: "Width",
+    height: "Height",
+    color: "Color",
+    backgroundColor: "Background Color",
+    textAlign: "Text Align",
+    borderWidth: "Border Width",
+    borderStyle: "Border Style",
+    borderColor: "Border Color",
+    fontFamily: "Font Family",
+    fontSize: "Font Size",
+    fontWeight: "Font Weight",
+    text: "Text",
+    binding: "Binding",
+    format: "Format",
+    source: "Source",
+    value: "Value",
+    barWidth: "Bar Width",
+    save: "Save",
+    undo: "Undo",
+    redo: "Redo",
+    image: "Image",
+    barcode: "Barcode",
+    header: "Header",
+    content: "Content",
+    footer: "Footer",
+    dataSource: "Data Source",
+    elements: "Elements",
+    properties: "Properties",
 };

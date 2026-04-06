@@ -1,5 +1,4 @@
 import EventEmitter, { EventCallback } from "../../core/eventEmitter";
-import { ITranslations } from "../../core/translations/translations-contract";
 import Textbox from "./editors/textbox";
 import { Property, PropertyEditor } from "./property";
 import "./propertyGridRow.css";
@@ -23,7 +22,6 @@ export default class PropertyGridRow {
   constructor(
     public readonly property: Property,
     private readonly value: string,
-    private readonly translations?: Partial<ITranslations>,
   ) {
     this.editor = property.editor || new Textbox();
 
@@ -49,8 +47,7 @@ export default class PropertyGridRow {
   }
 
   refresh() {
-    this.elementLabel.innerText =
-      this.translations?.[this.property.label as keyof ITranslations] ?? this.property.label;
+    this.elementLabel.innerText = this.property.label;
     this.editor.value = this.value;
   }
 

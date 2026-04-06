@@ -81,18 +81,18 @@ export default class Designer {
     this.sidebar.addTabs([
       {
         icon: Database,
-        title: effectiveTranslations["Data Source"],
+        title: effectiveTranslations.dataSource,
         content: this.dataSourceTreeList.element,
       },
       {
-        title: effectiveTranslations["Elements"],
+        title: effectiveTranslations.elements,
         content: this.elementsTreeList.element,
       },
     ]);
 
     this.sidebar.addPanel(
       TreeStructure,
-      effectiveTranslations["Properties"],
+      effectiveTranslations.properties,
       this.propertyGrid.element,
     );
 

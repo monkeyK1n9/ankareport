@@ -64,9 +64,9 @@ export default class ElementsTreeList extends TreeList<ElementsTreeItemData> {
     const s3 = this.options.reportContainer.report.reportSectionFooter;
 
     return [
-      this.getSectionData(s1, this.options.translations["Header"]),
-      this.getSectionData(s2, this.options.translations["Content"]),
-      this.getSectionData(s3, this.options.translations["Footer"]),
+      this.getSectionData(s1, this.options.translations.header),
+      this.getSectionData(s2, this.options.translations.content),
+      this.getSectionData(s3, this.options.translations.footer),
     ];
   }
 
@@ -86,7 +86,7 @@ export default class ElementsTreeList extends TreeList<ElementsTreeItemData> {
             const textReportItem: TextReportItem = x;
 
             const item: TreeItemData<ElementsTreeItemData> = {
-              label: `${this.options.translations["Text"]} [${
+              label: `${this.options.translations.text} [${
                 textReportItem.properties.binding ||
                 textReportItem.properties.text ||
                 ""
@@ -100,7 +100,7 @@ export default class ElementsTreeList extends TreeList<ElementsTreeItemData> {
           }
 
           const item: TreeItemData<ElementsTreeItemData> = {
-            label: this.options.translations["Image"],
+            label: this.options.translations.image,
             data: {
               type: "item",
               component: x,

@@ -1,4 +1,5 @@
 import { EventCallback } from "../../core/eventEmitter";
+import { ITranslations } from "../../core/translations/translations-contract";
 
 export type PropertyType = "boolean" | "string" | "number" | "color";
 
@@ -20,7 +21,7 @@ export interface PropertyEditor {
 }
 
 export interface Property {
-  field: string;
+  field: keyof ITranslations;
   label: string;
   type: PropertyType;
   editor?: PropertyEditor;

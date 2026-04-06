@@ -66,7 +66,8 @@ export default class PropertyGrid {
       const property = this._properties[i];
 
       const value: any = (this._dataSource as any)[property.field] ?? "";
-      const row = new PropertyGridRow(property, value.toString(), this.translations);
+      const translatedLabel = this.translations?.[property.field as keyof ITranslations] ?? property.label;
+      const row = new PropertyGridRow({ ...property, label: translatedLabel }, value.toString());
 
       row.addEventListener("change", (e) => {
         this.onChange(property, e);
