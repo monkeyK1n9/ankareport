@@ -1,29 +1,30 @@
+import { ITranslations } from "../../core/translations/translations-contract";
 import Toolbar, { ToolbarOrientation } from "./toolbar";
 import ToolbarButton from "./toolbarButton";
 
 export default class ToolbarLeftMenu extends Toolbar {
   public readonly labelButton: ToolbarButton;
 
-  constructor() {
+  constructor(translations: ITranslations) {
     super(ToolbarOrientation.Vertical);
 
     this.labelButton = this.addButton({
       text: "Ͳ",
-      title: "Text",
+      title: translations["Text"],
       draggable: true,
       type: "text",
     });
 
     this.labelButton = this.addButton({
       text: "I",
-      title: "Image",
+      title: translations["Image"],
       draggable: true,
       type: "image",
     });
 
     this.labelButton = this.addButton({
       text: "B",
-      title: "Barcode",
+      title: translations["Barcode"],
       draggable: true,
       type: "barcode",
     });
