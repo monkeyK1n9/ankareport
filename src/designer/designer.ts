@@ -44,7 +44,7 @@ export default class Designer {
   public readonly sidebar = new Sidebar();
   private readonly dataSourceTreeList = new DataSourceTreeList();
   private readonly elementsTreeList: ElementsTreeList;
-  private readonly propertyGrid: PropertyGrid;
+  private readonly propertyGrid = new PropertyGrid();
 
   private readonly changeStack = new ChangeStack();
 
@@ -57,10 +57,11 @@ export default class Designer {
 
     this.menu = new ToolbarTopMenu(effectiveTranslations);
     this.toolbar = new ToolbarLeftMenu(effectiveTranslations);
-    this.propertyGrid = new PropertyGrid(effectiveTranslations);
+    this.propertyGrid = new PropertyGrid();
 
     this.reportContainer = new ReportContainer({
       designer: this,
+      translations: effectiveTranslations,
     });
 
     this.elementsTreeList = new ElementsTreeList({

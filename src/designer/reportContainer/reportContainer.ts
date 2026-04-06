@@ -3,12 +3,14 @@ import { ILayout } from "../../core/layout";
 import Designer from "../designer";
 import Report from "../report/report";
 import { ChangeEventArgs as ReportChangeEventArgs } from "../report/report.events";
+import { ITranslations } from "../../core/translations/translations-contract";
 import { ReportContainerEventMap } from "./report-container.events";
 
 import "./reportContainer.css";
 
 export interface ReportContainerOptions {
   designer: Designer;
+  translations?: Partial<ITranslations>;
 }
 
 export default class ReportContainer {
@@ -20,7 +22,7 @@ export default class ReportContainer {
     new EventEmitter<ReportChangeEventArgs>();
 
   constructor(options: ReportContainerOptions) {
-    this.report = new Report({ designer: options.designer });
+    this.report = new Report({ designer: options.designer, translations: options.translations });
 
     this._init();
   }

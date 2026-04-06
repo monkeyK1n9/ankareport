@@ -1,7 +1,11 @@
 import { Property } from "../../components/propertyGrid/property";
+import { ITranslations } from "../translations/translations-contract";
 import BaseReportItemProperties from "./baseReportItemProperties";
 
 export default class TextReportItemProperties extends BaseReportItemProperties {
+  constructor(translations?: Partial<ITranslations>) {
+    super(translations);
+  }
   private _text = "";
   private _binding = "";
   private _format = "";
@@ -34,9 +38,9 @@ export default class TextReportItemProperties extends BaseReportItemProperties {
 
   getPropertyDefinitions(): Property[] {
     return [
-      { field: "text", label: "Text", type: "string" },
-      { field: "binding", label: "Binding", type: "string" },
-      { field: "format", label: "Format", type: "string" },
+      { field: "text", label: this.translations?.text ?? "Text", type: "string" },
+      { field: "binding", label: this.translations?.binding ?? "Binding", type: "string" },
+      { field: "format", label: this.translations?.format ?? "Format", type: "string" },
       ...super.getPropertyDefinitions(),
     ];
   }

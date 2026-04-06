@@ -3,6 +3,7 @@ import EventEmitter, { EventCallback } from "../eventEmitter";
 import { IBaseReportItem } from "../layout";
 import { PropertyChangeEventArgs } from "../properties";
 import StyleProperties, { TextAlign } from "../styleProperties";
+import { ITranslations } from "../translations/translations-contract";
 import { MultipleStyles } from "../utils/style.utils";
 import BaseReportItemProperties from "./baseReportItemProperties";
 
@@ -19,6 +20,7 @@ export interface ReportItemOptions {
   parentStyles: StyleProperties[];
   defaultProperties?: Partial<IBaseReportItem>;
   appendTo?: HTMLElement;
+  translations?: Partial<ITranslations>;
 }
 
 export default abstract class BaseReportItem implements IDisposable {

@@ -2,7 +2,6 @@ import { Property } from "./property";
 import PropertyGridRow, { ChangeEventArgs } from "./propertyGridRow";
 import "./propertyGrid.css";
 import Properties from "../../core/properties";
-import { ITranslations } from "../../core/translations/translations-contract";
 
 export default class PropertyGrid {
   public readonly element = document.createElement("div");
@@ -37,7 +36,7 @@ export default class PropertyGrid {
     }
   }
 
-  constructor(private readonly translations?: Partial<ITranslations>) {
+  constructor() {
     this._init();
   }
 
@@ -66,8 +65,7 @@ export default class PropertyGrid {
       const property = this._properties[i];
 
       const value: any = (this._dataSource as any)[property.field] ?? "";
-      const translatedLabel = this.translations?.[property.field as keyof ITranslations] ?? property.label;
-      const row = new PropertyGridRow({ ...property, label: translatedLabel }, value.toString());
+      const row = new PropertyGridRow(property, value.toString());
 
       row.addEventListener("change", (e) => {
         this.onChange(property, e);

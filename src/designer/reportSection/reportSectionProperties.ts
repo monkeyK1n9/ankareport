@@ -1,10 +1,14 @@
 import { Property } from "../../components/propertyGrid/property";
 import StyleProperties from "../../core/styleProperties";
+import { ITranslations } from "../../core/translations/translations-contract";
 
 const DEFAULT_SECTION_HEIGHT = 100;
 const MIN_SECTION_HEIGHT = 10;
 
 export default class ReportSectionProperties extends StyleProperties {
+  constructor(translations?: Partial<ITranslations>) {
+    super(undefined, translations);
+  }
   private _height: number = DEFAULT_SECTION_HEIGHT;
   private _binding = "";
   private _title = "Section";
@@ -37,7 +41,7 @@ export default class ReportSectionProperties extends StyleProperties {
 
   getPropertyDefinitions(): Property[] {
     return [
-      { field: "height", label: "Height", type: "number" },
+      { field: "height", label: this.translations?.height ?? "Height", type: "number" },
       ...super.getPropertyDefinitions(),
     ];
   }

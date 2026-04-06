@@ -4,10 +4,12 @@ import BaseReportItem, { ReportItemOptions } from "./baseReportItem";
 import TextReportItemProperties from "./textReportItemProperties";
 
 export default class TextReportItem extends BaseReportItem {
-  public readonly properties = new TextReportItemProperties();
+  public readonly properties: TextReportItemProperties;
 
   constructor(options: ReportItemOptions) {
     super();
+
+    this.properties = new TextReportItemProperties(options.translations);
 
     if (options.appendTo) {
       options.appendTo.appendChild(this.element);

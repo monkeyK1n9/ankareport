@@ -8,6 +8,7 @@ import NumberInput from "../components/propertyGrid/editors/numberInput";
 import { Property } from "../components/propertyGrid/property";
 import { IStyle } from "./layout";
 import Properties from "./properties";
+import { ITranslations } from "./translations/translations-contract";
 
 export type TextAlign = "left" | "center" | "right";
 
@@ -22,8 +23,12 @@ export default class StyleProperties extends Properties implements IStyle {
   private _fontSize?: string;
   private _fontWeight?: string;
 
-  constructor(defaultValues?: IStyle) {
+  protected readonly translations?: Partial<ITranslations>;
+
+  constructor(defaultValues?: IStyle, translations?: Partial<ITranslations>) {
     super();
+
+    this.translations = translations;
 
     if (!defaultValues) return;
 
@@ -120,55 +125,55 @@ export default class StyleProperties extends Properties implements IStyle {
     return [
       {
         field: "color",
-        label: "Color",
+        label: this.translations?.color ?? "Color",
         type: "string",
         editor: new ColorPicker({ defaultValue: "#000000" }),
       },
       {
         field: "backgroundColor",
-        label: "Background Color",
+        label: this.translations?.backgroundColor ?? "Background Color",
         type: "string",
         editor: new ColorPicker({ defaultValue: "#ffffff" }),
       },
       {
         field: "textAlign",
-        label: "Text Align",
+        label: this.translations?.textAlign ?? "Text Align",
         type: "string",
         editor: createTextAlignDropdownEditor(),
       },
       {
         field: "borderWidth",
-        label: "Border Width",
+        label: this.translations?.borderWidth ?? "Border Width",
         type: "number",
         editor: new NumberInput({ minValue: 0 }),
       },
       {
         field: "borderStyle",
-        label: "Border Style",
+        label: this.translations?.borderStyle ?? "Border Style",
         type: "string",
         editor: createBorderStyleDropdownEditor(),
       },
       {
         field: "borderColor",
-        label: "Border Color",
+        label: this.translations?.borderColor ?? "Border Color",
         type: "string",
         editor: new ColorPicker({ defaultValue: "#000000" }),
       },
       {
         field: "fontFamily",
-        label: "Font Family",
+        label: this.translations?.fontFamily ?? "Font Family",
         type: "string",
         editor: createFontFamilyDropdownEditor(),
       },
       {
         field: "fontSize",
-        label: "Font Size",
+        label: this.translations?.fontSize ?? "Font Size",
         type: "string",
         editor: createFontSizeDropdownEditor(),
       },
       {
         field: "fontWeight",
-        label: "Font Weight",
+        label: this.translations?.fontWeight ?? "Font Weight",
         type: "string",
         editor: createFontWeightDropdownEditor(),
       },

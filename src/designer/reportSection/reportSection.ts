@@ -26,6 +26,7 @@ import {
   getSubsectionDataList,
 } from "./report-section.utils";
 import ReportSectionProperties from "./reportSectionProperties";
+import { ITranslations } from "../../core/translations/translations-contract";
 
 import "./reportSection.css";
 
@@ -37,6 +38,7 @@ export interface ReportSectionOptions {
   parentStyles: StyleProperties[];
   defaultProperties?: Partial<ISection>;
   appendTo?: HTMLElement;
+  translations?: Partial<ITranslations>;
 }
 
 export default class ReportSection {
@@ -58,16 +60,19 @@ export default class ReportSection {
   public items: ReportItem[] = [];
   public subsections: ReportSection[] = [];
 
-  public readonly properties = new ReportSectionProperties();
+  public readonly properties: ReportSectionProperties;
   public readonly styles: MultipleStyles;
 
   private readonly _changeEventEmitter = new EventEmitter<ChangeEventArgs>();
   private readonly _selectEventEmitter = new EventEmitter<SelectEventArgs>();
 
   private readonly _designer: Designer;
+  private readonly _translations?: Partial<ITranslations>;
   public readonly parent?: ReportSection;
 
   constructor(options: ReportSectionOptions) {
+    this.properties = new ReportSectionProperties(options.translations);
+
     if (options.appendTo) {
       options.appendTo.appendChild(this.element);
     }
@@ -75,6 +80,7 @@ export default class ReportSection {
     this.properties.binding = options.binding || "";
     this.properties.title = options.title;
     this._designer = options.designer;
+    this._translations = options.translations;
     this.parent = options.parent;
 
     this.styles = new MultipleStyles(...options.parentStyles, this.properties);
@@ -230,6 +236,7 @@ export default class ReportSection {
       parentStyles: this.styles.getList(),
       defaultProperties,
       appendTo: this.elementContent,
+      translations: this._translations,
     });
 
     item.addEventListener("change", (e) => {
@@ -252,6 +259,7 @@ export default class ReportSection {
       parentStyles: this.styles.getList(),
       defaultProperties,
       appendTo: this.elementContent,
+      translations: this._translations,
     });
 
     item.addEventListener("change", (e) => {
@@ -274,6 +282,7 @@ export default class ReportSection {
       parentStyles: this.styles.getList(),
       defaultProperties,
       appendTo: this.elementContent,
+      translations: this._translations,
     });
 
     item.addEventListener("change", (e) => {
@@ -333,6 +342,7 @@ export default class ReportSection {
       parentStyles: this.styles.getList(),
       defaultProperties,
       appendTo: this.element,
+      translations: this._translations,
     });
 
     section.addEventListener("change", (e) => this._onChange(e));
