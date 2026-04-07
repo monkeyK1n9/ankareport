@@ -1,5 +1,4 @@
 import { EventCallback } from "../../core/eventEmitter";
-import { ITranslations } from "../../core/translations/translations-contract";
 
 export type PropertyType = "boolean" | "string" | "number" | "color";
 
