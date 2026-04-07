@@ -21,7 +21,7 @@ export interface PropertyEditor {
 }
 
 export interface Property {
-  field: keyof ITranslations;
+  field: string;
   label: string;
   type: PropertyType;
   editor?: PropertyEditor;
