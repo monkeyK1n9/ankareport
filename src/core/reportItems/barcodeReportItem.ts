@@ -7,10 +7,12 @@ import BaseReportItem, { ReportItemOptions } from "./baseReportItem";
 export default class BarcodeReportItem extends BaseReportItem {
   public elementSvg: SVGElement = null!;
 
-  public readonly properties = new BarcodeReportItemProperties();
+  public readonly properties: BarcodeReportItemProperties;
 
   constructor(options: ReportItemOptions) {
     super();
+
+    this.properties = new BarcodeReportItemProperties(options.translations);
 
     if (options.appendTo) {
       options.appendTo.appendChild(this.element);

@@ -6,10 +6,12 @@ import BaseReportItem, { ReportItemOptions } from "./baseReportItem";
 export default class ImageReportItem extends BaseReportItem {
   public readonly elementImg = document.createElement("img");
 
-  public readonly properties = new ImageReportItemProperties();
+  public readonly properties: ImageReportItemProperties;
 
   constructor(options: ReportItemOptions) {
     super();
+
+    this.properties = new ImageReportItemProperties(options.translations);
 
     this.element.appendChild(this.elementImg);
 

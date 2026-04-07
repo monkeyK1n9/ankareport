@@ -1,8 +1,12 @@
 import ImageSelector from "../../components/propertyGrid/editors/imageSelector";
 import { Property } from "../../components/propertyGrid/property";
+import { ITranslations } from "../translations/translations-contract";
 import BaseReportItemProperties from "./baseReportItemProperties";
 
 export default class ImageReportItemProperties extends BaseReportItemProperties {
+  constructor(translations?: Partial<ITranslations>) {
+    super(translations);
+  }
   private _source = "";
   private _binding = "";
 
@@ -28,13 +32,13 @@ export default class ImageReportItemProperties extends BaseReportItemProperties 
     return [
       {
         field: "source",
-        label: "Source",
+        label: this.translations?.source ?? "Source",
         type: "string",
         editor: new ImageSelector(),
       },
       {
         field: "binding",
-        label: "Binding",
+        label: this.translations?.binding ?? "Binding",
         type: "string",
       },
       ...super.getPropertyDefinitions(),

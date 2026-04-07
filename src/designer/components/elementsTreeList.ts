@@ -1,6 +1,7 @@
 import TreeItem, { TreeItemData } from "../../components/treeList/treeItem";
 import TreeList from "../../components/treeList/treeList";
 import { ReportItem, TextReportItem } from "../../core/reportItems";
+import { ITranslations } from "../../core/translations/translations-contract";
 import ReportContainer from "../reportContainer/reportContainer";
 import ReportSection from "../reportSection/reportSection";
 
@@ -20,6 +21,7 @@ export interface ElementsTreeItemDataItem {
 
 export interface ElementsTreeListOptions {
   reportContainer: ReportContainer;
+  translations: ITranslations;
 }
 
 export default class ElementsTreeList extends TreeList<ElementsTreeItemData> {
@@ -62,9 +64,9 @@ export default class ElementsTreeList extends TreeList<ElementsTreeItemData> {
     const s3 = this.options.reportContainer.report.reportSectionFooter;
 
     return [
-      this.getSectionData(s1, "Header"),
-      this.getSectionData(s2, "Content"),
-      this.getSectionData(s3, "Footer"),
+      this.getSectionData(s1, this.options.translations.header),
+      this.getSectionData(s2, this.options.translations.content),
+      this.getSectionData(s3, this.options.translations.footer),
     ];
   }
 
@@ -84,7 +86,7 @@ export default class ElementsTreeList extends TreeList<ElementsTreeItemData> {
             const textReportItem: TextReportItem = x;
 
             const item: TreeItemData<ElementsTreeItemData> = {
-              label: `Text [${
+              label: `${this.options.translations.text} [${
                 textReportItem.properties.binding ||
                 textReportItem.properties.text ||
                 ""
@@ -98,7 +100,7 @@ export default class ElementsTreeList extends TreeList<ElementsTreeItemData> {
           }
 
           const item: TreeItemData<ElementsTreeItemData> = {
-            label: `Image`,
+            label: this.options.translations.image,
             data: {
               type: "item",
               component: x,

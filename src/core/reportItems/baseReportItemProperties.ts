@@ -1,8 +1,12 @@
 import NumberInput from "../../components/propertyGrid/editors/numberInput";
 import { Property } from "../../components/propertyGrid/property";
 import StyleProperties from "../styleProperties";
+import { ITranslations } from "../translations/translations-contract";
 
 export default class BaseReportItemProperties extends StyleProperties {
+  constructor(translations?: Partial<ITranslations>) {
+    super(undefined, translations);
+  }
   private _x = 0;
   private _y = 0;
   private _width = 0;
@@ -54,31 +58,31 @@ export default class BaseReportItemProperties extends StyleProperties {
     return [
       {
         field: "x",
-        label: "X",
+        label: this.translations?.x ?? "X",
         type: "number",
         editor: new NumberInput(),
       },
       {
         field: "y",
-        label: "Y",
+        label: this.translations?.y ?? "Y",
         type: "number",
         editor: new NumberInput(),
       },
       {
         field: "width",
-        label: "Width",
+        label: this.translations?.width ?? "Width",
         type: "number",
         editor: new NumberInput(),
       },
       {
         field: "height",
-        label: "Height",
+        label: this.translations?.height ?? "Height",
         type: "number",
         editor: new NumberInput(),
       },
       {
         field: "name",
-        label: "Name",
+        label: this.translations?.name ?? "Name",
         type: "string",
       },
       ...super.getPropertyDefinitions(),

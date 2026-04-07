@@ -6,11 +6,13 @@ import { SelectEventArgs } from "../reportSection/report-section.events";
 import ReportSection from "../reportSection/reportSection";
 import { ChangeEventArgs, ReportEventMap } from "./report.events";
 import ReportProperties from "./reportProperties";
+import { ITranslations } from "../../core/translations/translations-contract";
 
 import "./report.css";
 
 export interface ReportOptions {
   designer: Designer;
+  translations?: Partial<ITranslations>;
 }
 
 export default class Report {
@@ -27,28 +29,33 @@ export default class Report {
     },
   });
 
-  public readonly properties = new ReportProperties();
+  public readonly properties: ReportProperties;
 
   private readonly _changeEventEmitter = new EventEmitter<ChangeEventArgs>();
 
   constructor(options: ReportOptions) {
+    this.properties = new ReportProperties(options.translations);
+
     this.reportSectionHeader = new ReportSection({
       title: "Header",
       designer: options.designer,
       parentStyles: [this.properties],
       appendTo: this.element,
+      translations: options.translations,
     });
     this.reportSectionContent = new ReportSection({
       title: "Content",
       designer: options.designer,
       parentStyles: [this.properties],
       appendTo: this.element,
+      translations: options.translations,
     });
     this.reportSectionFooter = new ReportSection({
       title: "Footer",
       designer: options.designer,
       parentStyles: [this.properties],
       appendTo: this.element,
+      translations: options.translations,
     });
 
     this._init();

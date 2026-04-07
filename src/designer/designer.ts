@@ -14,6 +14,7 @@ import ToolbarTopMenu from "./toolbar/toolbarTopMenu";
 
 import "./designer.css";
 import { ChangeStack } from "./change-stack";
+import { defaultTranslations, ITranslations } from "../core/translations/translations-contract";
 
 export interface DataSourceChangeEventArgs {
   dataSource: DataSourceTreeItemData[];
@@ -29,13 +30,14 @@ export interface DesignerOptions {
   dataSource?: DataSourceTreeItemData[];
   onSaveButtonClick?: EventCallback<ILayout>;
   layout?: ILayout;
+  translations?: Partial<ITranslations>;
 }
 
 export default class Designer {
   public readonly elementContent = document.createElement("div");
 
-  public readonly menu = new ToolbarTopMenu();
-  public readonly toolbar = new ToolbarLeftMenu();
+  public readonly menu: ToolbarTopMenu;
+  public readonly toolbar: ToolbarLeftMenu;
 
   public readonly reportContainer: ReportContainer;
 
@@ -51,13 +53,20 @@ export default class Designer {
 
   constructor(options: DesignerOptions) {
     const { element } = options;
+    const effectiveTranslations: ITranslations = { ...defaultTranslations, ...options.translations };
+
+    this.menu = new ToolbarTopMenu(effectiveTranslations);
+    this.toolbar = new ToolbarLeftMenu(effectiveTranslations);
+    this.propertyGrid = new PropertyGrid();
 
     this.reportContainer = new ReportContainer({
       designer: this,
+      translations: effectiveTranslations,
     });
 
     this.elementsTreeList = new ElementsTreeList({
       reportContainer: this.reportContainer,
+      translations: effectiveTranslations,
     });
 
     element.classList.add("anka-designer");
@@ -73,18 +82,18 @@ export default class Designer {
     this.sidebar.addTabs([
       {
         icon: Database,
-        title: "Data Source",
+        title: effectiveTranslations.dataSource,
         content: this.dataSourceTreeList.element,
       },
       {
-        title: "Elements",
+        title: effectiveTranslations.elements,
         content: this.elementsTreeList.element,
       },
     ]);
 
     this.sidebar.addPanel(
       TreeStructure,
-      "Properties",
+      effectiveTranslations.properties,
       this.propertyGrid.element,
     );
 
